@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Disshita Rishi - Portfolio</title>
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #005f99;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      background: #ffffff;
+      padding: 15px 40px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #007acc;
+    }
+    nav a {
+      margin-left: 25px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    main {
+      margin-top: 80px;
+      flex-grow: 1;
+    }
+    section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #007acc;
+      display: inline-block;
+      padding-bottom: 5px;
+      color: #005f99;
+    }
+    /* Hero */
+    #hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 80px 20px 40px;
+      background: #e1e8f0;
+      border-radius: 12px;
+      color: #007acc;
+      text-align: center;
+    }
+    #hero img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid #007acc;
+      object-fit: cover;
+      box-shadow: 0 0 15px #007acc88;
+    }
+    #hero .intro {
+      max-width: 450px;
+      color: #004a75;
+    }
+    #hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #003d66;
+    }
+    #hero p {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #005f99;
+    }
+    #hero button {
+      margin-top: 25px;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e1e8f0;
+      background: #007acc;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px #007accaa;
+      transition: background 0.3s ease;
+    }
+    #hero button:hover {
+      background: #005f99;
+      box-shadow: 0 6px 15px #005f9988;
+    }
+    /* About */
+    #about {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+    /* Projects Grid */
+    #projects .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 25px;
+    }
+    .project-card {
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ccc;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px #007acc44;
+    }
+    .project-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .project-content {
+      padding: 15px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #333;
+    }
+    .project-content h3 {
+      margin-bottom: 10px;
+      color: #007acc;
+      font-weight: 700;
+    }
+    .project-content p {
+      flex-grow: 1;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+    .project-links a {
+      background: #007acc;
+      padding: 8px 14px;
+      border-radius: 30px;
+      color: #f0f6fc;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 3px 8px #007accaa;
+      transition: background 0.3s ease;
+    }
+    .project-links a:hover {
+      background: #005f99;
+      box-shadow: 0 6px 15px #005f9988;
+    }
+    /* Skills */
+    #skills .skill {
+      margin-bottom: 15px;
+    }
+    #skills .skill-name {
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #007acc;
+    }
+    #skills .skill-bar {
+      background: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 14px;
+    }
+    #skills .skill-bar > div {
+      height: 100%;
+      background: #007acc;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+    /* Contact */
+    #contact {
+      max-width: 600px;
+      margin: 0 auto 80px;
+    }
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      color: #333;
+    }
+    #contact label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    #contact input, #contact textarea {
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      resize: none;
+      background: #fff;
+      color: #333;
+    }
+    #contact input:focus, #contact textarea:focus {
+      outline: 2px solid #007acc;
+      background: #f0f8ff;
+    }
+    #contact button {
+      background: #007acc;
+      color: #f0f6fc;
+      font-weight: 700;
+      padding: 12px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px #007accaa;
+      transition: background 0.3s ease;
+      max-width: 180px;
+      align-self: center;
+    }
+    #contact button:hover {
+      background: #005f99;
+      box-shadow: 0 6px 15px #005f9988;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      background: #f0f0f0;
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+    footer a {
+      margin: 0 10px;
+      color: #007acc;
+      font-weight: 600;
+    }
+    footer a:hover {
+      color: #005f99;
+    }
+    @media (max-width: 850px) {
+      #hero {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Disshita Rishi</div>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+<section id="hero">
+  <img src="C:\Users\sapna\Downloads\profilepp.jpg" alt="Profile Picture" />
+  <div class="intro">
+    <h1>Hello, I'm Disshita</h1>
+    <p>A passionate Full Stack Developer crafting modern web apps with MERN stack, learning Data Structures and Algorithms, and aiming to become a top-tier software developer.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView()">Get in Touch</button>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>I'm a dedicated software developer with a keen interest in building dynamic and responsive web applications. Currently working on full-stack MERN projects and constantly leveling up my skills in Data Structures and Algorithms.</p>
+  <p>I’m actively practicing DSA on platforms like LeetCode, and I love solving real-world problems through code. My goal is to become a software engineer who not only builds great products but writes clean and efficient code.</p>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects-grid">
+      <div class="project-content">
+        <h3>DocSync</h3>
+        <p>A full stack project for doctors and patients to schedule and organize everything.</p>
+        <div class="project-links">
+          <a href="https://github.com/disshitaaaa/DocSync_HackVsit" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://docsynchome.netlify.app/" target="_blank" rel="noopener">Live Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project-content">
+    <h3>Text-To-Speech Converter</h3>
+    <p>A python based project to convert the given text to speech and can change voices, speed.</p>
+    <div class="project-links">
+      <a href="https://github.com/disshitaaaa/tts" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://your-portfolio-live-link.com" target="_blank" rel="noopener">Live Demo</a>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skill"><div class="skill-name">Languages: C++, Python, Java</div><div class="skill-bar"><div style="width: 90%;"></div></div></div>
+  <div class="skill"><div class="skill-name">Web Development: HTML5, CSS3, JavaScript, React, Tailwind CSS</div><div class="skill-bar"><div style="width: 95%;"></div></div></div>
+  <div class="skill"><div class="skill-name">Software & Tools: Eclipse, Visual Studio, MySQL</div><div class="skill-bar"><div style="width: 80%;"></div></div></div>
+  <div class="skill"><div class="skill-name">Subjects of Interest: DSA, OOPS, Networks, DBMS, OS</div><div class="skill-bar"><div style="width: 85%;"></div></div></div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form onsubmit="event.preventDefault(); alert('Thanks for reaching out! I will get back to you soon.')">
+    <label for="name">Name</label>
+    <input id="name" type="text" required placeholder="Your name" />
+    <label for="email">Email</label>
+    <input id="email" type="email" required placeholder="your.email@example.com" />
+    <label for="message">Message</label>
+    <textarea id="message" rows="5" required placeholder="Your message here..."></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+</main>
+
+<footer>
+  &copy; 2025 Disshita Rishi |
+  <a href="https://www.linkedin.com/in/disshitarishi/" target="_blank" rel="noopener">LinkedIn</a> |
+  <a href="https://github.com/disshitaaaa" target="_blank" rel="noopener">GitHub</a> |
+  <a href="mailto:rishidisshita@gmail.com">Email</a>
+</footer>
+
+<script>
+  // Animate skill bars on scroll
+  function animateSkills() {
+    const skills = document.querySelectorAll('#skills .skill-bar > div');
+    const triggerPoint = window.innerHeight * 0.8;
+    skills.forEach(skill => {
+      const skillTop = skill.getBoundingClientRect().top;
+      if(skillTop < triggerPoint) {
+        skill.style.width = skill.getAttribute('style').match(/width:\s*\d+%/)[0].split(':')[1];
+      } else {
+        skill.style.width = '0';
+      }
+    });
+  }
+  window.addEventListener('scroll', animateSkills);
+  window.addEventListener('load', animateSkills);
+</script>
+
+</body>
+</html>
